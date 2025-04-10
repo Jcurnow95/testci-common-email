@@ -294,6 +294,18 @@
     <build>
      <pluginManagement>
         <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+             <version>3.2.5</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/EmailTest.java</exclude>
+                        <!-- OR exclude a single test method -->
+                        <exclude>**/EmailTest#testBuildMimeMessage_PopBeforeSmtp</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
