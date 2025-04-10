@@ -1,0 +1,16 @@
+name: Java CI with Maven
+
+on: [push]  # Runs on every push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'  # or your preferred version
+          distribution: 'temurin'
+      - name: Build and test with Maven
+        run: mvn clean test
