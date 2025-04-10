@@ -244,10 +244,10 @@ public class EmailTest {
         
     try {
         // Arrange
-        email.setFrom("from@example.com");
-        email.addTo("to@example.com");
-        email.setSubject("Test Subject");
-        email.setContent("Test Content", "text/plain");
+        Email email = new SimpleEmail();
+        email.setHostName("localhost");
+        email.setPopBeforeSmtp(true, "localhost", "username", "password");
+        email.buildMimeMessage();
         email.setPopBeforeSmtp(true, "pop.example.com", "username", "password");
 
         // Act
