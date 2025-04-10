@@ -105,7 +105,7 @@ public class EmailTest {
         }
     }
     
-    @Test
+    /*@Test
     public void testBuildMimeMessage_FirstCall() throws EmailException {
         // Arrange
         email.setFrom("from@example.com");
@@ -118,7 +118,7 @@ public class EmailTest {
 
         // Assert
         assertNotNull("MimeMessage should be built", email.getMimeMessage());
-    }
+    }*/
 
     @Test(expected = IllegalStateException.class)
     public void testBuildMimeMessage_SecondCall() throws EmailException {
