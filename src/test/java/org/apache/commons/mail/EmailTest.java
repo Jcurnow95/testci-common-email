@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.Properties;
 import javax.mail.MessagingException;
 import javax.mail.Session;
+import com.icegreen.greenmail.util.GreenMail;
+import com.icegreen.greenmail.util.ServerSetup;
 
 import org.junit.After;
 import org.junit.Before;
@@ -105,7 +107,7 @@ public class EmailTest {
         }
     }
     
-    /*@Test
+    @Test
     public void testBuildMimeMessage_FirstCall() throws EmailException {
         // Arrange
         email.setFrom("from@example.com");
@@ -118,7 +120,7 @@ public class EmailTest {
 
         // Assert
         assertNotNull("MimeMessage should be built", email.getMimeMessage());
-    }*/
+    }
 
     @Test(expected = IllegalStateException.class)
     public void testBuildMimeMessage_SecondCall() throws EmailException {
@@ -141,7 +143,7 @@ public class EmailTest {
         try {
 			email.addTo("to@example.com");
 		} catch (EmailException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
         email.setSubject("Test Subject");
@@ -162,7 +164,7 @@ public class EmailTest {
         try {
 			email.setFrom("from@example.com");
 		} catch (EmailException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
         email.setSubject("Test Subject");
@@ -237,6 +239,10 @@ public class EmailTest {
 
     @Test
     public void testBuildMimeMessage_PopBeforeSmtp() throws EmailException {
+        GreenMail greenMail = new GreenMail(ServerSetup.POP3);
+    greenMail.start();
+        
+    try {
         // Arrange
         email.setFrom("from@example.com");
         email.addTo("to@example.com");
@@ -249,6 +255,9 @@ public class EmailTest {
 
         // Assert
         assertNotNull("MimeMessage should be built even with POP before SMTP", email.getMimeMessage());
+    } finally {
+        greenMail.stop();
+    }
     }
     
     @Test
